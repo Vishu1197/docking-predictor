@@ -1,0 +1,34 @@
+# ============================================
+# Docking Score Prediction Tool - Requirements
+# ============================================
+
+# Core Python Libraries
+pandas>=2.0.0           # Data manipulation and CSV handling
+numpy>=1.24.0           # Numerical computations
+scikit-learn>=1.3.0     # Scaling, RandomForest, metrics, preprocessing
+scipy>=1.11.0           # Statistical functions (e.g., Pearson correlation)
+joblib>=1.3.0           # Model and scaler serialization
+
+# Deep Learning (FNN Encoder)
+# Required if using FNN transformation; safe to include for Streamlit Cloud
+torch>=2.0.0            # PyTorch backend for the FNN encoder
+
+# Visualization
+matplotlib>=3.7.0       # Scatter plot and histograms
+
+# Web Application
+streamlit>=1.30.0       # For interactive web app (app_predict.py)
+
+# Optional utilities
+# (Comment out any not needed on deployment)
+# shap>=0.44.0           # If you later add SHAP explanations
+# seaborn>=0.13.0        # Optional improved visualization aesthetics
+
+# ============================================
+# Notes:
+# - This environment supports both Streamlit (UI) and CLI scripts.
+# - If you deploy on Streamlit Cloud and face PyTorch install issues,
+#   replace 'torch>=2.0.0' with a specific lightweight CPU build, e.g.:
+#   torch==2.0.1+cpu -f https://download.pytorch.org/whl/torch_stable.html
+# - Tested with Python 3.10 / 3.11
+# ============================================
