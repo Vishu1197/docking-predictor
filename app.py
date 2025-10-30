@@ -252,3 +252,19 @@ else:
     st.write("---")
     st.info("Need a quick demo? Check the 'Use repo sample CSV' box in the sidebar (if sample exists).")
 
+# -------------------------------------------------------------
+# 📚 Citation Footer
+# -------------------------------------------------------------
+st.markdown("---")
+st.markdown(
+    """
+    <div style="text-align: center; font-size: 15px; line-height: 1.5; color: #555;">
+        <strong>Please cite this app as:</strong><br>
+        Chanda, V., Hanumantharayudu, P. T., Keshri, V., Haldar, A., Muralidaran, Y., & Mishra, P. (2025).<br>
+        <em>Unveiling natural antiviral agents against dengue virus: A hybrid machine learning and molecular dynamics approach</em>
+        [Manuscript under review].<br>
+        Department of Biotechnology, School of Applied Sciences, REVA University, Bengaluru, India.
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
