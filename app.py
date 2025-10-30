@@ -27,7 +27,7 @@ SCALER_PATH = os.path.join(ARTIFACT_DIR, "standard_scaler.save")
 RF_MODEL_PATH = os.path.join(ARTIFACT_DIR, "best_rf_model.joblib")
 FNN_STATE_PATH = os.path.join(ARTIFACT_DIR, "fnn_torch_state.pth")
 FNN_INFO_PATH = os.path.join(ARTIFACT_DIR, "fnn_model_info.json")
-SAMPLE_PATH = os.path.join(ARTIFACT_DIR, "sample_input_no_score.csv")
+SAMPLE_PATH = os.path.join(ARTIFACT_DIR, "test.csv")
 
 # ---------- PAGE ----------
 st.set_page_config(
@@ -251,3 +251,4 @@ else:
     )
     st.write("---")
     st.info("Need a quick demo? Check the 'Use repo sample CSV' box in the sidebar (if sample exists).")
+
