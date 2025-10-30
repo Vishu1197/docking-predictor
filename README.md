@@ -77,5 +77,5 @@ After prediction, the tool adds a new column `predicted_scores` and allows CSV d
 
 ```csv
 ligand,protein,molecular_weight,xlogp,tpsa,hbond_donor_count,...,predicted_scores
-CID1234,NS1,314.25,2.1,89.2,2,4,...,-8.57
-CID5678,NS3,290.44,1.8,102.5,3,5,...,-7.92
+1234,NS1,314.25,2.1,89.2,2,4,...,-8.57
+5678,NS3,290.44,1.8,102.5,3,5,...,-7.92
