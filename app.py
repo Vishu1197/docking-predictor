@@ -77,23 +77,30 @@ def load_artifacts():
         "fnn_info": None
     }
 
+    # --- robust FNN loader (replaces previous fixed-shape FNNSkip block) ---
     if TORCH_AVAILABLE and os.path.exists(FNN_STATE_PATH) and os.path.exists(FNN_INFO_PATH):
-        with open(FNN_INFO_PATH, "r") as fh:
-            fnn_info = json.load(fh)
+        # read any declared model info (may include input_dim, transformed_dim, hidden1, hidden2)
+        try:
+            with open(FNN_INFO_PATH, "r") as fh:
+                fnn_info = json.load(fh)
+        except Exception:
+            fnn_info = {}
 
+        # parameterized class that matches arbitrary hidden sizes
         class FNNSkip(nn.Module):
-            def __init__(self, input_dim, trans_dim=16, p_dropout=0.2):
+            def __init__(self, input_dim, hidden1=64, hidden2=32, trans_dim=16, p_dropout=0.2):
                 super().__init__()
-                self.fc1 = nn.Linear(input_dim, 64)
-                self.bn1 = nn.BatchNorm1d(64)
-                self.fc2 = nn.Linear(64, 32)
-                self.bn2 = nn.BatchNorm1d(32)
-                self.fc_trans = nn.Linear(32, trans_dim)
+                self.fc1 = nn.Linear(input_dim, hidden1)
+                self.bn1 = nn.BatchNorm1d(hidden1)
+                self.fc2 = nn.Linear(hidden1, hidden2)
+                self.bn2 = nn.BatchNorm1d(hidden2)
+                self.fc_trans = nn.Linear(hidden2, trans_dim)
                 self.bn_trans = nn.BatchNorm1d(trans_dim)
                 self.proj = nn.Linear(input_dim, trans_dim)
                 self.reg = nn.Linear(trans_dim, 1)
                 self.dropout = nn.Dropout(p_dropout)
                 self.act = nn.LeakyReLU(negative_slope=0.1)
+
             def forward(self, x):
                 x1 = self.act(self.bn1(self.fc1(x)))
                 x1 = self.dropout(x1)
@@ -106,11 +113,79 @@ def load_artifacts():
                 out = self.reg(added)
                 return out, added
 
-        fnn = FNNSkip(input_dim=fnn_info["input_dim"], trans_dim=fnn_info["transformed_dim"])
-        fnn.load_state_dict(torch.load(FNN_STATE_PATH, map_location="cpu"))
-        fnn.eval()
-        artifacts["fnn"] = fnn
-        artifacts["fnn_info"] = fnn_info
+        try:
+            sd = torch.load(FNN_STATE_PATH, map_location="cpu")
+            # Some checkpoints save a dict with nested 'state_dict' or 'model_state_dict'
+            if isinstance(sd, dict):
+                for possible in ("state_dict", "model_state_dict", "model_state", "checkpoint"):
+                    if possible in sd and isinstance(sd[possible], dict):
+                        sd = sd[possible]
+                        break
+
+            # if keys are prefixed (like 'module.'), strip them
+            new_sd = {}
+            for k, v in sd.items():
+                new_key = k
+                if k.startswith("module."):
+                    new_key = k[len("module."):]
+                new_sd[new_key] = v
+            sd = new_sd
+
+            # Required keys check (best-effort)
+            if not any(k.startswith("fc1.weight") for k in sd.keys()):
+                raise RuntimeError("Checkpoint does not contain expected FNNSkip parameters (fc1.weight ...)")
+
+            # Infer shapes from checkpoint weights
+            ckpt_fc1 = sd.get("fc1.weight")
+            ckpt_fc2 = sd.get("fc2.weight")
+            ckpt_fc_trans = sd.get("fc_trans.weight")
+            ckpt_proj = sd.get("proj.weight")
+
+            ckpt_input_dim = None
+            hidden1 = fnn_info.get("hidden1")
+            hidden2 = fnn_info.get("hidden2")
+            trans_dim = fnn_info.get("transformed_dim") or fnn_info.get("trans_dim")
+
+            if ckpt_fc1 is not None:
+                ckpt_input_dim = ckpt_fc1.shape[1]
+                if hidden1 is None:
+                    hidden1 = ckpt_fc1.shape[0]
+            if ckpt_fc2 is not None and hidden2 is None:
+                hidden2 = ckpt_fc2.shape[0]
+            if ckpt_fc_trans is not None and trans_dim is None:
+                trans_dim = ckpt_fc_trans.shape[0]
+            # Fallback: if proj exists, verify its input dim (proj.weight shape = trans_dim x input_dim)
+            if ckpt_proj is not None:
+                proj_shape = ckpt_proj.shape  # (trans_dim, input_dim)
+                if ckpt_input_dim is None:
+                    ckpt_input_dim = proj_shape[1]
+                if trans_dim is None:
+                    trans_dim = proj_shape[0]
+
+            # Validate inferred values
+            if ckpt_input_dim is None or hidden1 is None or hidden2 is None or trans_dim is None:
+                raise RuntimeError("Could not infer full FNN architecture from checkpoint and fnn_model_info.json")
+
+            # Ensure input dim matches scaler/feature count if fnn_info has input_dim
+            input_dim_from_info = fnn_info.get("input_dim")
+            # We'll not auto-resize data. If mismatch, fail early with helpful message.
+            if input_dim_from_info is not None and input_dim_from_info != ckpt_input_dim:
+                raise RuntimeError(f"Mismatch: fnn_model_info.json input_dim={input_dim_from_info} but checkpoint expects {ckpt_input_dim}")
+
+            # Construct model with inferred sizes
+            fnn = FNNSkip(input_dim=ckpt_input_dim, hidden1=int(hidden1), hidden2=int(hidden2), trans_dim=int(trans_dim))
+            # load state dict (keys must match)
+            fnn.load_state_dict(sd)
+            fnn.eval()
+
+            artifacts["fnn"] = fnn
+            artifacts["fnn_info"] = {"input_dim": int(ckpt_input_dim), "hidden1": int(hidden1), "hidden2": int(hidden2), "transformed_dim": int(trans_dim)}
+
+        except Exception as e:
+            # If anything goes wrong, gracefully disable FNN and show a log message
+            print("⚠️ FNN load failed:", e)
+            artifacts["fnn"] = None
+            artifacts["fnn_info"] = None
 
     return artifacts
 
@@ -280,4 +355,3 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-
