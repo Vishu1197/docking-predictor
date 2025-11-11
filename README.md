@@ -5,7 +5,7 @@
 
 ## 🌍 Overview
 
-The **Docking Score Prediction Tool** is an intelligent web application built with **Streamlit**, designed to predict molecular docking scores from a set of **molecular descriptors** — *without performing traditional docking simulations*.  
+The **Docking Score Prediction Tool** is an intelligent web application built with, designed to predict molecular docking scores from a set of **molecular descriptors** — *without performing traditional docking simulations*.  
 
 This tool provides researchers with a fast, cost-effective, and reproducible way to estimate the binding affinity of ligands to proteins using **pre-trained hybrid models** combining **Feed-Forward Neural Networks (FNN)** and **Random Forest (RF) regression**.
 
@@ -25,11 +25,10 @@ Once trained, the model can **instantly estimate docking scores** for unseen lig
 
 ✅ Predicts docking scores directly from molecular descriptors (no `docking score` required)  
 ✅ Uses a **StandardScaler + FNN encoder + Random Forest** hybrid model  
-✅ Simple **Streamlit web interface** — upload, predict, visualize, and download results  
 ✅ Works for unseen ligands and proteins (trained for generalization)  
 ✅ Interactive visualization of score distribution  
 ✅ Modular design — easily update models, scalers, or encoders in the `artifacts/` folder  
-✅ Deployable anywhere (Streamlit Cloud, local server, or private lab network)
+✅ Deployable anywhere (Local server, or private lab network)
 
 ---
 
