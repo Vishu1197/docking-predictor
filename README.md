@@ -78,3 +78,25 @@ After prediction, the tool adds a new column `predicted_scores` and allows CSV d
 ligand,protein,molecular_weight,xlogp,tpsa,hbond_donor_count,...,predicted_scores
 1234,NS1,314.25,2.1,89.2,2,4,...,-8.57
 5678,NS3,290.44,1.8,102.5,3,5,...,-7.92
+
+
+## 📄 Citation
+
+<div style="background: #e6ffed; border-left: 4px solid #2ecc71; padding: 15px;">
+
+<strong>Please cite the following work if you use <code>docking-predictor</code>:</strong>
+
+<br><br>
+
+<strong>Chanda, V., et al. (2025). <em>Docking Predictor: An Automated Tool for Rapid Structure-Based Screening.</em> [Manuscript under peer review].</strong>
+
+<br><br>
+
+<strong>DOI: to be updated upon publication.</strong>
+
+<br><br>
+
+You may also cite this GitHub repository:<br>
+<strong>Chanda, V. (2025). <em>docking-predictor</em> (Version 1.0). GitHub. https://github.com/Vishu1197/docking-predictor</strong>
+
+</div>
