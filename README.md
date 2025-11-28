@@ -82,21 +82,20 @@ ligand,protein,molecular_weight,xlogp,tpsa,hbond_donor_count,...,predicted_score
 
 ## 📄 Citation
 
-<div style="background: #e6ffed; border-left: 4px solid #2ecc71; padding: 15px;">
+<div style="background-color:#e6ffed; padding:15px; border-left:5px solid #2ecc71;">
 
-<strong>Please cite the following work if you use <code>docking-predictor</code>:</strong>
-
-<br><br>
-
-<strong>Chanda, V., et al. (2025). <em>Docking Predictor: An Automated Tool for Rapid Structure-Based Screening.</em> [Manuscript under peer review].</strong>
+<strong>📢 If you use <code>docking-predictor</code> in your research, please cite:</strong>
 
 <br><br>
 
-<strong>DOI: to be updated upon publication.</strong>
+**Chanda, V., Hanumantharayudu, P.T., Keshri, V. et al. (2025). _Unveiling natural antiviral agents against dengue virus: a hybrid machine learning and molecular dynamics approach._**  
+*Network Modeling Analysis in Health Informatics and Bioinformatics, 14, 164 (2025).*  
+📌 **https://doi.org/10.1007/s13721-025-00670-7**
 
 <br><br>
 
-You may also cite this GitHub repository:<br>
-<strong>Chanda, V. (2025). <em>docking-predictor</em> (Version 1.0). GitHub. https://github.com/Vishu1197/docking-predictor</strong>
+You may also cite the GitHub repository:  
+**Chanda, V. (2025). _docking-predictor_ (Version 1.0). GitHub. https://github.com/Vishu1197/docking-predictor**
 
 </div>
+
