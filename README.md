@@ -1,102 +1,93 @@
-# 🧠 Docking Score Prediction Tool  
-### AI-powered platform for predicting molecular docking scores using pre-trained ML/DL models
+🧠 Docking Score Prediction Tool
+AI-powered platform for predicting molecular docking scores using pre-trained ML/DL models
+🌍 Overview
 
----
+The Docking Score Prediction Tool is an intelligent web application designed to predict molecular docking scores using machine learning, without performing traditional docking simulations.
 
-## 🌍 Overview
+It provides researchers with a fast, cost-effective, and reproducible way to estimate ligand–protein binding affinity using a hybrid model combining:
 
-The **Docking Score Prediction Tool** is an intelligent web application built with, designed to predict molecular docking scores from a set of **molecular descriptors** — *without performing traditional docking simulations*.  
+StandardScaler
 
-This tool provides researchers with a fast, cost-effective, and reproducible way to estimate the binding affinity of ligands to proteins using **pre-trained hybrid models** combining **Feed-Forward Neural Networks (FNN)** and **Random Forest (RF) regression**.
+Feed-Forward Neural Network (FNN) Encoder
 
----
+Random Forest Regressor
 
-## 🧬 Scientific Background
+This approach eliminates the computational cost of conventional docking tools while maintaining high predictive performance.
 
-Molecular docking is a critical step in computational drug discovery — used to predict the preferred orientation and binding strength between a ligand and a target protein.  
-Traditional docking methods (AutoDock, Glide, GOLD, etc.) are **computationally intensive** and require extensive parameter tuning.
+🧬 Scientific Background
 
-This AI-driven approach learns from thousands of known docking results to establish a **predictive relationship between molecular descriptors** and docking scores.  
-Once trained, the model can **instantly estimate docking scores** for unseen ligand–protein pairs, significantly accelerating the early stages of virtual screening.
+Molecular docking is widely used in computational drug discovery to predict the orientation and binding strength between ligand–protein complexes.
+Traditional algorithms (AutoDock, Glide, GOLD, etc.) are:
 
----
+⚠️ Computationally heavy
 
-## 🚀 Features
+⚠️ Time-consuming
 
-✅ Predicts docking scores directly from molecular descriptors (no `docking score` required)  
-✅ Uses a **StandardScaler + FNN encoder + Random Forest** hybrid model  
-✅ Works for unseen ligands and proteins (trained for generalization)  
-✅ Interactive visualization of score distribution  
-✅ Modular design — easily update models, scalers, or encoders in the `artifacts/` folder  
-✅ Deployable anywhere (Local server, or private lab network)
+⚠️ Sensitive to parameter tuning
 
----
+Our ML-based workflow uses thousands of precomputed docking results to learn a generalizable mapping between molecular descriptors and docking scores.
 
-## 🧩 Model Architecture
+Once trained, it can instantly estimate docking scores for unseen ligands and proteins, dramatically accelerating early-stage virtual screening.
 
-| Component | Description |
-|------------|--------------|
-| **StandardScaler** (`standard_scaler.save`) | Normalizes ligand and protein descriptors |
-| **FNN Encoder** (`fnn_torch_state.pth`, `fnn_model_info.json`) | Nonlinear transformation network with skip connections |
-| **Random Forest Regressor** (`best_rf_model.joblib`) | Predicts final docking score from FNN-transformed features |
+🚀 Features
 
-**Workflow:**
-1. Input descriptors → StandardScaler normalization  
-2. Normalized features → FNN feature transformation  
-3. Transformed latent vector → Random Forest Regression  
-4. Output → Predicted docking score  
+✅ Predicts docking scores directly from molecular descriptors
+✅ No docking simulations needed
+✅ Hybrid StandardScaler → FNN → Random Forest model
+✅ Generalizes to unseen ligands & proteins
+✅ Clean UI with interactive results visualization
+✅ Replaceable model components (inside artifacts/)
+✅ Deployable locally or in private lab networks
 
----
+🧩 Model Architecture
+Component	Description
+StandardScaler (standard_scaler.save)	Normalizes ligand + protein descriptors
+FNN Encoder (fnn_torch_state.pth, fnn_model_info.json)	Non-linear transformation network (with skip connections)
+Random Forest Regressor (best_rf_model.joblib)	Predicts final docking score from encoded features
+Workflow
 
-## 📄 Input File Format
+Input descriptors → StandardScaler
 
-Prepare a CSV file with the following columns:
+Normalized data → FNN encoder
 
-| Column | Description |
-|---------|--------------|
-| `ligand` | Ligand ID or PubChem CID |
-| `protein` | Target protein name or ID |
-| `molecular_weight` | Ligand molecular weight |
-| `xlogp` | LogP (lipophilicity) |
-| `tpsa` | Topological Polar Surface Area |
-| `hbond_donor_count` | Hydrogen bond donor count |
-| `hbond_acceptor_count` | Hydrogen bond acceptor count |
-| `charge` | Net molecular charge |
-| `rotatable_bond_count` | Number of rotatable bonds |
-| `prot_nhd`, `prot_nha`, `prot_mw` | Protein descriptors |
+Latent representation → Random Forest model
 
-⚠️ Do **not** include a `docking score` column — the model predicts it.  
-Rows with missing numeric values should be pre-cleaned before upload.
+Output → Predicted docking score
 
----
+📄 Input File Format
 
-## 📊 Output Format
+Upload a CSV containing the following columns:
 
-After prediction, the tool adds a new column `predicted_scores` and allows CSV download:
+Column	Meaning
+ligand	Ligand ID or PubChem CID
+protein	Protein ID or name
+molecular_weight	MW of ligand
+xlogp	LogP / hydrophobicity
+tpsa	Topological Polar Surface Area
+hbond_donor_count	# donors
+hbond_acceptor_count	# acceptors
+charge	Net molecular charge
+rotatable_bond_count	# rotatable bonds
+prot_nhd, prot_nha, prot_mw	Protein descriptors
 
-```csv
+⚠️ Do not include a docking score column — the model predicts it.
+
+📊 Output Format
+
+After prediction, the tool adds a new column predicted_scores and allows CSV download:
+
 ligand,protein,molecular_weight,xlogp,tpsa,hbond_donor_count,...,predicted_scores
 1234,NS1,314.25,2.1,89.2,2,4,...,-8.57
 5678,NS3,290.44,1.8,102.5,3,5,...,-7.92
 
----
+📄 Citation
+<img src="https://img.shields.io/badge/Cite%20This%20Tool-Green?style=for-the-badge&color=2ecc71" />
 
-**## 📄 Citation
-**
-<div style="background-color:#e6ffed; padding:15px; border-left:5px solid #2ecc71;">
+Chanda, V., Hanumantharayudu, P.T., Keshri, V. et al. (2025).
+Unveiling natural antiviral agents against dengue virus: a hybrid machine learning and molecular dynamics approach.
+Network Modeling Analysis in Health Informatics and Bioinformatics, 14, 164 (2025).
+🔗 https://doi.org/10.1007/s13721-025-00670-7
 
-<strong>📢 If you use <code>docking-predictor</code> in your research, please cite:</strong>
-
-<br><br>
-
-**Chanda, V., Hanumantharayudu, P.T., Keshri, V. et al. (2025). _Unveiling natural antiviral agents against dengue virus: a hybrid machine learning and molecular dynamics approach._**  
-*Network Modeling Analysis in Health Informatics and Bioinformatics, 14, 164 (2025).*  
-📌 **https://doi.org/10.1007/s13721-025-00670-7**
-
-<br><br>
-
-You may also cite the GitHub repository:  
-**Chanda, V. (2025). _docking-predictor_ (Version 1.0). GitHub. https://github.com/Vishu1197/docking-predictor**
-
-</div>
-
+GitHub Repository:
+Chanda, V. (2025). docking-predictor (Version 1.0). GitHub.
+https://github.com/Vishu1197/docking-predictor
