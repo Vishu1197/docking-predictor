@@ -79,9 +79,10 @@ ligand,protein,molecular_weight,xlogp,tpsa,hbond_donor_count,...,predicted_score
 1234,NS1,314.25,2.1,89.2,2,4,...,-8.57
 5678,NS3,290.44,1.8,102.5,3,5,...,-7.92
 
+---
 
-## 📄 Citation
-
+**## 📄 Citation
+**
 <div style="background-color:#e6ffed; padding:15px; border-left:5px solid #2ecc71;">
 
 <strong>📢 If you use <code>docking-predictor</code> in your research, please cite:</strong>
