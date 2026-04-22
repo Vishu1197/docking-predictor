@@ -90,7 +90,7 @@ ligand,protein,molecular_weight,xlogp,tpsa,hbond_donor_count,...,predicted_score
 
 > ![Cite](https://img.shields.io/badge/Cite%20This%20Tool-Green?style=for-the-badge&color=2ecc71)
 >
-> **Chanda, V., Hanumantharayudu, P. T., Keshri, V. et al. (2025).  
+> **Chanda, V.,(2025).  
 > _Unveiling natural antiviral agents against dengue virus: a hybrid machine learning and molecular dynamics approach._  
 > Network Modeling Analysis in Health Informatics and Bioinformatics, 14, 164 (2025).**  
 > DOI: https://doi.org/10.1007/s13721-025-00670-7
