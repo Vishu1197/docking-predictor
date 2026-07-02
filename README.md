@@ -1,3 +1,16 @@
+> ## 🚧 Major Update in Progress
+>
+> **This project is currently undergoing a major redevelopment following our Scopus-indexed publication to improve prediction accuracy, reduce model error (MSE), and introduce advanced AI capabilities.**
+>
+> **Version 2.0** will feature:
+> - Improved prediction performance with significantly lower MSE
+> - Intelligent model selection framework
+> - Enhanced ensemble ML/DL architecture
+> - Better generalization and explainable AI
+> - Expanded descriptor support and improved validation
+>
+> **The repository is temporarily unavailable while these upgrades are being completed. A stable public release will be made available after comprehensive testing and validation.**
+
 # 🧠 Docking Score Prediction Tool  
 ### AI-powered platform for predicting molecular docking scores using pre-trained ML/DL models
 
@@ -90,10 +103,7 @@ ligand,protein,molecular_weight,xlogp,tpsa,hbond_donor_count,...,predicted_score
 
 > ![Cite](https://img.shields.io/badge/Cite%20This%20Tool-Green?style=for-the-badge&color=2ecc71)
 >
-> **Chanda, V.,(2025).  
-> _Unveiling natural antiviral agents against dengue virus: a hybrid machine learning and molecular dynamics approach._  
-> Network Modeling Analysis in Health Informatics and Bioinformatics, 14, 164 (2025).**  
-> DOI: https://doi.org/10.1007/s13721-025-00670-7
+> **Chanda, V., Hanumantharayudu, P.T., Keshri, V. et al. Unveiling natural antiviral agents against dengue virus: a hybrid machine learning and molecular dynamics approach. Netw Model Anal Health Inform Bioinforma 14, 164 (2025). https://doi.org/10.1007/s13721-025-00670-7**  
 >
 > **GitHub Repository Citation:**  
 > Chanda, V. (2025). *docking-predictor* (Version 1.0). GitHub.  
