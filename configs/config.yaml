@@ -1,0 +1,40 @@
+# dockpred — production training configuration
+random_seed: 42
+
+data:
+  processed_dir: "data/processed/"      # raw descriptor chunks (~175 files)
+  test_path: "data/test/test.csv"       # held-out experimental set (never trained on)
+  target_column: "score1"
+
+preprocessing:
+  # Physically sensible docking-score window. Rows outside this range are
+  # non-physical failed-docking artifacts (up to +423 kcal/mol) and are
+  # excluded from training — the single biggest fix for regression-to-the-mean.
+  score_bounds: [-15.0, 0.0]
+  # Per-feature winsorisation quantiles before standardisation.
+  clip_quantiles: [0.001, 0.999]
+  scaling_method: "standard+winsor"
+  impute_strategy: "median"
+
+training:
+  # Rows sampled per chunk. All ~175 chunks are always used so the pool spans
+  # the full dataset; this caps memory/compute while staying representative.
+  rows_per_chunk: 1200
+  val_frac: 0.1
+  test_frac: 0.1                          # internal benchmark split (not the holdout)
+
+  # Missing-descriptor robustness: augment training with masked copies.
+  augment_missing: true
+  augment_max_drop: 0.5
+
+  # Optuna HPO for the strong gradient-boosting models.
+  hpo_trials: 15
+  hpo_tune_rows: 50000
+
+  # Deep-learning training.
+  dl_epochs: 15
+  dl_batch_size: 512
+
+system:
+  use_gpu: false
+  device: "cpu"
