@@ -589,15 +589,20 @@ MIT — see [LICENSE](LICENSE).
 
 ## ⚠️ Disclaimer
 
-**Predictions are computational estimates.** DockPred approximates a computed docking
-score from molecular descriptors using statistical/ML models trained on historical
-data. It does **not** perform molecular docking, does not simulate a binding pose, and
-has only moderate, quantified correlation with experimental affinity data (see
-[Prediction Accuracy](#-prediction-accuracy)). It should **not** replace molecular
-docking, molecular dynamics simulation, or experimental validation (SPR, ITC, enzymatic
-assays, co-crystallography, etc.) in any decision with real consequences. Use it as a
-fast pre-filter or ranking aid, and confirm anything important with the appropriate
-physics-based or experimental method.
+**Predictions are computational estimates.** DockPred approximates a computed docking 
+score from molecular descriptors using statistical/ML models trained on historical 
+data. It was developed as a high-throughput virtual screening and prioritization tool
+for bioinformatics and cheminformatics workflows, enabling researchers to rapidly 
+compare large libraries of small molecules (e.g., compounds retrieved from PubChem or
+other chemical databases) and identify the most promising candidates for a protein 
+target before undertaking computationally intensive docking studies. It does **not** 
+perform molecular docking, does not simulate a binding pose, and has only moderate, 
+quantified correlation with experimental affinity data (see
+[Prediction Accuracy](#-prediction-accuracy)).. It should not replace molecular 
+docking, molecular dynamics simulation, or experimental validation (SPR, ITC, 
+enzymatic assays, co-crystallography, etc.) in any decision with real consequences. 
+Use it as a fast pre-filter or ranking aid, and confirm anything important with 
+the appropriate physics-based or experimental method.
 
 ---
 
