@@ -1,0 +1,50 @@
+cff-version: 1.2.0
+title: docking-predictor
+message: "If you use this software, please cite both this repository and the associated publication."
+type: software
+
+authors:
+  - family-names: Chanda
+    given-names: Vishal
+  - family-names: Hanumantharayudu
+    given-names: P. T.
+  - family-names: Keshri
+    given-names: V.
+  - family-names: Haldar
+    given-names: A.
+  - family-names: Muralidaran
+    given-names: Y.
+  - family-names: Mishra
+    given-names: P.
+
+version: 2.0.0
+
+date-released: 2026-07-04
+
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Chanda
+      given-names: Vishal
+    - family-names: Hanumantharayudu
+      given-names: P. T.
+    - family-names: Keshri
+      given-names: V.
+    - family-names: Haldar
+      given-names: A.
+    - family-names: Muralidaran
+      given-names: Y.
+    - family-names: Mishra
+      given-names: P.
+
+  title: "Unveiling natural antiviral agents against dengue virus: a hybrid machine learning and molecular dynamics approach"
+
+  journal: "Network Modeling Analysis in Health Informatics and Bioinformatics"
+
+  year: 2025
+
+  volume: 14
+
+  issue: 1
+
+  pages: 164
