@@ -575,6 +575,7 @@ Saved predictions:     ligand_predicted.csv
 If you use DockPred in your research, please cite it as:
 
 **APA**
+
 Chanda, V., Hanumantharayudu, P. T., Keshri, V., Haldar, A., Muralidaran, Y., & Mishra, P. (2025). Unveiling natural antiviral agents against dengue virus: a hybrid machine learning and molecular dynamics approach. Network Modeling Analysis in Health Informatics and Bioinformatics, 14(1), 164.
 
 > [!NOTE]
