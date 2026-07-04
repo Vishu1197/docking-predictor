@@ -578,9 +578,6 @@ If you use DockPred in your research, please cite it as:
 
 Chanda, V., Hanumantharayudu, P. T., Keshri, V., Haldar, A., Muralidaran, Y., & Mishra, P. (2025). Unveiling natural antiviral agents against dengue virus: a hybrid machine learning and molecular dynamics approach. Network Modeling Analysis in Health Informatics and Bioinformatics, 14(1), 164.
 
-> [!NOTE]
-> Replace the placeholders above with your name/affiliation and repository URL, and
-> update with a paper citation if/when one is published.
 
 ---
 
