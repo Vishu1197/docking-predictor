@@ -1,4 +1,0 @@
-artifacts/*.pth filter=lfs diff=lfs merge=lfs -text
-artifacts/*.joblib filter=lfs diff=lfs merge=lfs -text
-artifacts/*.save filter=lfs diff=lfs merge=lfs -text
-artifacts/*.json filter=lfs diff=lfs merge=lfs -text
