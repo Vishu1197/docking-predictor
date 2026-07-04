@@ -574,22 +574,8 @@ Saved predictions:     ligand_predicted.csv
 
 If you use DockPred in your research, please cite it as:
 
-**BibTeX**
-```bibtex
-@software{dockpred2026,
-  author  = {<Your Name>},
-  title   = {DockPred: A Machine Learning and Deep Learning Ensemble Framework
-             for Molecular Docking Score Prediction},
-  year    = {2026},
-  version = {2.0.0},
-  url     = {<repository-url>}
-}
-```
-
 **APA**
-> \<Your Name\>. (2026). *DockPred: A Machine Learning and Deep Learning Ensemble
-> Framework for Molecular Docking Score Prediction* (Version 2.0.0) [Computer
-> software]. \<repository-url\>
+Chanda, V., Hanumantharayudu, P. T., Keshri, V., Haldar, A., Muralidaran, Y., & Mishra, P. (2025). Unveiling natural antiviral agents against dengue virus: a hybrid machine learning and molecular dynamics approach. Network Modeling Analysis in Health Informatics and Bioinformatics, 14(1), 164.
 
 > [!NOTE]
 > Replace the placeholders above with your name/affiliation and repository URL, and
